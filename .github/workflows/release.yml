@@ -29,15 +29,16 @@ jobs:
         run: npm run build
 
       - name: Package Extension
-        run: npx plasmo package
+        run: |
+          npx plasmo package --target=chrome-mv3
+          npx plasmo package --target=firefox-mv2
 
       - name: Prepare Artifacts
         run: |
           mkdir -p artifacts
-          # Plasmo package names artifacts based on version and target
-          # We'll use wildcards to find the generated zips and rename them for clarity
-          cp build/chrome-mv3-prod.zip artifacts/vocabulary-helper-chrome.zip
-          cp build/firefox-mv2-prod.zip artifacts/vocabulary-helper-firefox.xpi
+          # Use wildcards to find the generated zips as names might vary
+          cp build/chrome-mv3-prod*.zip artifacts/vocabulary-helper-chrome.zip
+          cp build/firefox-mv2-prod*.zip artifacts/vocabulary-helper-firefox.xpi
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
