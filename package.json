@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "A reading assistant with StarDict dictionary support.",
   "author": "Lance Mei",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "dev": "plasmo dev --target=firefox-mv2",
     "build": "plasmo build --target=firefox-mv2",
