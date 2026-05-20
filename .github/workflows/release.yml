@@ -1,0 +1,52 @@
+name: "Build and Release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Chrome Extension (MV3)
+        run: npm run build:chrome
+
+      - name: Build Firefox Extension (MV2)
+        run: npm run build
+
+      - name: Package Extension
+        run: npx plasmo package
+
+      - name: Prepare Artifacts
+        run: |
+          mkdir -p artifacts
+          # Plasmo package names artifacts based on version and target
+          # We'll use wildcards to find the generated zips and rename them for clarity
+          cp build/chrome-mv3-prod.zip artifacts/vocabulary-helper-chrome.zip
+          cp build/firefox-mv2-prod.zip artifacts/vocabulary-helper-firefox.xpi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            artifacts/vocabulary-helper-chrome.zip
+            artifacts/vocabulary-helper-firefox.xpi
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
