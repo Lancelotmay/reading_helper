@@ -23,10 +23,11 @@ Since this project is in early development, you can install it as a developer:
 1. Clone or download this repository.
 2. Install dependencies: `npm install`.
 3. Build the extension:
-   - For **Chrome**: `npm run build:chrome`
+   - For **Chrome/Edge**: `npm run build:chrome`
    - For **Firefox**: `npm run build`
 4. Load the extension:
    - **Chrome**: Go to `chrome://extensions/`, enable "Developer mode", click "Load unpacked", and select the `build/chrome-mv3-prod` folder.
+   - **Edge**: Go to `edge://extensions/`, enable "Developer mode", click "Load unpacked", and select the `build/chrome-mv3-prod` folder.
    - **Firefox**: Go to `about:debugging#/runtime/this-firefox`, click "Load Temporary Add-on", and select the `manifest.json` inside the `build/firefox-mv2-prod` folder.
 
 ### How to Use
@@ -58,10 +59,11 @@ Reading Helper（阅读助手）是一款智能浏览器扩展，旨在帮助您
 1. 克隆或下载本仓库代码。
 2. 安装依赖：`npm install`。
 3. 编译项目：
-   - **Chrome**: `npm run build:chrome`
+   - **Chrome/Edge**: `npm run build:chrome`
    - **Firefox**: `npm run build`
 4. 加载插件：
    - **Chrome**: 访问 `chrome://extensions/`，开启“开发者模式”，点击“加载已解压的扩展程序”，选择 `build/chrome-mv3-prod` 目录。
+   - **Edge**: 访问 `edge://extensions/`，开启“开发者模式”，点击“加载已解压的扩展程序”，选择 `build/chrome-mv3-prod` 目录。
    - **Firefox**: 访问 `about:debugging#/runtime/this-firefox`，点击“临时加载附加组件”，选择 `build/firefox-mv2-prod` 目录下的 `manifest.json` 文件。
 
 ### 使用步骤
